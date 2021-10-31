@@ -37,8 +37,12 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-  
-    return 
+    length=0
+    for line in corpus:
+        for word in line:
+            length+=1
+    return length
+    
 
 
 '''
@@ -316,5 +320,5 @@ if __name__ == "__main__":
     # test.runWeek3()
 
     # test.testLoadBook()
-    # test.testGetCorpusLength()
-    test.testBuildVocabulary()
+    test.testGetCorpusLength()
+    # test.testBuildVocabulary()
