@@ -23,13 +23,12 @@ def loadBook(filename):
     for line in open_.readlines():
         print("line:",line)
         temp=[]
-        
             # print("length:",len(line))
-        for i in line.split(" ",):
+        for i in line.split(" "):
             if i!= "\n":
                 temp.append(i.strip())
         row.append(temp)
-    print(row)
+    # print(row)
     return row
 
 print(loadBook("./data/test2.txt"))
@@ -155,11 +154,7 @@ Parameters: list of strs ; dict mapping strs to ints ; int
 Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
-    result_list=[]
-    for i in unigrams:
-        if i in unigramCounts:
-            result_list.append(unigramCounts[i]/totalCount)
-    return result_list
+    return 
 
 
 '''
@@ -178,8 +173,14 @@ getTopWords(count, words, probs, ignoreList)
 Parameters: int ; list of strs ; list of floats ; list of strs
 Returns: dict mapping strs to floats
 '''
+import operator
 def getTopWords(count, words, probs, ignoreList):
-    return
+    
+    return 
+# print(getTopWords(3, 
+#         [ "hello", "and", "welcome", "to", "15-110", ".", "we're", "happy", "have", "you"], 
+#         [ 1/12, 1/12, 1/12, 2/12, 1/12, 2/12, 1/12, 1/12, 1/12, 1/12 ], 
+#         [ ".", "hello", "and", "15-110", "we're", "have", "you"]))
 
 
 '''
@@ -371,4 +372,4 @@ if __name__ == "__main__":
     # test.testCountStartWords()
     # test.testBuildUniformProbs()
     # test.testBuildUnigramProbs()
-    test.testCountBigrams()
+    test.testGetTopWords()
