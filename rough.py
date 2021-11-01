@@ -12,3 +12,6 @@ def buildVocabulary(corpus):
             if word not in uni_value:
                 uni_value.append(word)
     return uni_value
+
+
+message = [] with open(filename) as file1: txt = file1.read().splitlines() for i in txt: if len(i) !=0: message .append( i.split(' ') ) return message
