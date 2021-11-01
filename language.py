@@ -21,15 +21,18 @@ def loadBook(filename):
     open_ = open(filename,"r")
     row=[]
     for line in open_.readlines():
+        print("line:",line)
         temp=[]
-        for i in line.split(" "):
-                temp.append(i.strip())
         
+            # print("length:",len(line))
+        for i in line.split(" ",):
+            if i!= "\n":
+                temp.append(i.strip())
         row.append(temp)
-    # print(row)
+    print(row)
     return row
 
-# print(loadBook("./data/test2.txt"))
+print(loadBook("./data/test2.txt"))
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -114,7 +117,16 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def countBigrams(corpus):
-    return
+    dict_ = {} 
+    for i in corpus: 
+        for j in range(len(i)-1): 
+            if i[j] not in dict_: 
+                dict_[i[j]] = {} 
+            if i[j+1] not in dict_[i[j]]: 
+                dict_[i[j]][i[j+1]] = 1 
+            else: dict_[i[j]][i[j+1]] +=1 
+    return dict_
+    
 
 
 ### WEEK 2 ###
@@ -346,3 +358,6 @@ if __name__ == "__main__":
     # test.testCountUnigrams()4
     # test.testGetStartWords()
     # test.testCountStartWords()
+    # test.testBuildUniformProbs()
+    # test.testBuildUnigramProbs()
+    test.testCountBigrams()
