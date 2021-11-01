@@ -180,8 +180,16 @@ Returns: dict mapping strs to floats
 '''
 import operator
 def getTopWords(count, words, probs, ignoreList):
-    
-    return 
+    result_dict={}
+    temp_dict={}
+    for i in range(len(words)):
+        if i not in ignoreList:
+            temp_dict[words[i]]=probs[i]
+    sorted_hastags = dict( sorted(temp_dict.items(), key=operator.itemgetter(1),reverse=True))
+    for k,y in sorted_hastags.items():
+        if len(result_dict) != count and k not in ignoreList:
+            result_dict[k]=y
+    return result_dict 
 # print(getTopWords(3, 
 #         [ "hello", "and", "welcome", "to", "15-110", ".", "we're", "happy", "have", "you"], 
 #         [ 1/12, 1/12, 1/12, 2/12, 1/12, 2/12, 1/12, 1/12, 1/12, 1/12 ], 
