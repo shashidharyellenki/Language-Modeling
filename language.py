@@ -3,7 +3,8 @@ Language Modeling Project
 Name:
 Roll No:
 """
-
+# import numpy as np
+# import matplotlib.pyplot as plt
 from os import read
 import language_tests as test
 
@@ -21,7 +22,7 @@ def loadBook(filename):
     open_ = open(filename,"r")
     row=[]
     for line in open_.readlines():
-        print("line:",line)
+        # print("line:",line)
         temp=[]
             # print("length:",len(line))
         for i in line.split(" "):
@@ -31,7 +32,7 @@ def loadBook(filename):
     # print(row)
     return row
 
-print(loadBook("./data/test2.txt"))
+# print(loadBook("./data/test2.txt"))
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -204,7 +205,17 @@ Returns: str
 '''
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
-    return
+    str_=""
+    for i in range(count):
+        temp = choices(words, weights=probs)
+        # print(temp)
+        str_+=temp[0]+" "
+
+    return str_
+# words = [ "hello", "world", "again" ]
+# probs = [ 2/5, 2/5, 1/5 ]
+# sentence = generateTextFromUnigrams(5, words, probs)
+# print(sentence)
 
 
 '''
@@ -230,8 +241,10 @@ graphTop50Words(corpus)
 Parameters: 2D list of strs
 Returns: None
 '''
+import matplotlib.pyplot as plt
 def graphTop50Words(corpus):
-    return
+    
+    return 
 
 
 '''
@@ -241,9 +254,10 @@ Parameters: 2D list of strs
 Returns: None
 '''
 def graphTopStartWords(corpus):
-    return
-
-
+    
+    return 
+# corpuss = loadBook("data/test1.txt")
+# print("this function:",graphTopStartWords(corpuss))
 '''
 graphTopNextWords(corpus, word)
 #5 [Hw6]
@@ -374,8 +388,8 @@ if __name__ == "__main__":
 
     ## Uncomment these for Week 3 ##
 
-    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek3()
+    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek3()
 
     # test.testLoadBook()
     # test.testGetCorpusLength()
@@ -385,4 +399,5 @@ if __name__ == "__main__":
     # test.testCountStartWords()
     # test.testBuildUniformProbs()
     # test.testBuildUnigramProbs()
-    test.testGetTopWords()
+    # test.testGetTopWords
+    # test.testGenerateTextFromUnigrams()
