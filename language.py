@@ -256,8 +256,12 @@ Returns: None
 '''
 import matplotlib.pyplot as plt
 def graphTop50Words(corpus):
-    
-    return 
+    vocabulary = buildVocabulary(corpus)
+    count= countUnigrams(corpus)
+    length = getCorpusLength(corpus)
+    unique_prob = buildUnigramProbs(vocabulary,count,length)
+    result = getTopWords(50, vocabulary, unique_prob, ignore)
+    return barPlot(result,"top-50-words")
 
 
 '''
@@ -403,8 +407,8 @@ if __name__ == "__main__":
 
     ## Uncomment these for Week 3 ##
 
-    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    # test.runWeek3()
+    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    test.runWeek3()
 
     # test.testLoadBook()
     # test.testGetCorpusLength()
@@ -416,4 +420,4 @@ if __name__ == "__main__":
     # test.testBuildUnigramProbs()
     # test.testGetTopWords
     # test.testGenerateTextFromUnigrams()
-    test.testGenerateTextFromBigrams()
+    # test.testGenerateTextFromBigrams()
