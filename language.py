@@ -224,6 +224,20 @@ Parameters: int ; list of strs ; list of floats ; dict mapping strs to (dicts ma
 Returns: str
 '''
 def generateTextFromBigrams(count, startWords, startWordProbs, bigramProbs):
+    sentence = ""
+    rword = choices(startWords, weights = startWordProbs)
+    sentence += rword[0]
+    lst = sentence
+    for i in range(count-1):
+        if lst != '.':
+            if lst in bigramProbs:
+                lst = choices(bigramProbs[lst]["words"], weights = bigramProbs[lst]["probs"])[0]
+                sentence = sentence + ' ' + lst
+        else:
+            rword = choices(startWords, weights = startWordProbs)
+            sentence =sentence+' '+ rword[0]
+            lst = rword[0]
+    return sentence
     return
 
 
@@ -387,8 +401,8 @@ if __name__ == "__main__":
 
     ## Uncomment these for Week 3 ##
 
-    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()
+    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek3()
 
     # test.testLoadBook()
     # test.testGetCorpusLength()
@@ -400,3 +414,4 @@ if __name__ == "__main__":
     # test.testBuildUnigramProbs()
     # test.testGetTopWords
     # test.testGenerateTextFromUnigrams()
+    test.testGenerateTextFromBigrams()
