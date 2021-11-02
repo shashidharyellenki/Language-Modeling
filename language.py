@@ -4,6 +4,7 @@ Name:
 Roll No:
 """
 
+from os import read
 import language_tests as test
 
 project = "Language" # don't edit this
@@ -17,9 +18,18 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
+    open_ = open(filename,"r")
+    row=[]
+    for line in open_.readlines():
+        temp=[]
+        for i in line.split(" "):
+                temp.append(i.strip())
+        
+        row.append(temp)
+    # print(row)
+    return row
 
-
+# print(loadBook("./data/test2.txt"))
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -27,7 +37,12 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
+    length=0
+    for line in corpus:
+        for word in line:
+            length+=1
+    return length
+    
 
 
 '''
@@ -37,7 +52,8 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+
+    return 
 
 
 '''
@@ -285,21 +301,24 @@ def scatterPlot(xs, ys, labels, title):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek1()
 
     ## Uncomment these for Week 2 ##
-"""
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek2()
-"""
+
+    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    # test.week2Tests()
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek2()
+
 
     ## Uncomment these for Week 3 ##
-"""
-    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()
-"""
+
+    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek3()
+
+    # test.testLoadBook()
+    test.testGetCorpusLength()
+    # test.testBuildVocabulary()
