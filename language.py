@@ -1,6 +1,6 @@
 """
 Language Modeling Project
-Name:
+Name:shashidhar
 Roll No:
 """
 # import numpy as np
@@ -238,7 +238,7 @@ def generateTextFromBigrams(count, startWords, startWordProbs, bigramProbs):
             sentence =sentence+' '+ rword[0]
             lst = rword[0]
     return sentence
-    return
+    
 
 
 ### WEEK 3 ###
