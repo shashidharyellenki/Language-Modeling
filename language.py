@@ -168,8 +168,18 @@ Parameters: dict mapping strs to ints ; dict mapping strs to (dicts mapping strs
 Returns: dict mapping strs to (dicts mapping strs to (lists of values))
 '''
 def buildBigramProbs(unigramCounts, bigramCounts):
-    #yet to write
-    return
+    nesteddict = {}
+    for prevWord in bigramCounts:
+        word = []
+        prob = []
+        for key,value in bigramCounts[prevWord].items():
+            word.append(key)
+            prob.append(value / unigramCounts[prevWord]) 
+            temp = {}
+            temp["words"] =word
+            temp["probs"] = prob
+        nesteddict[prevWord] = temp
+    return nesteddict
 
 
 '''
@@ -377,4 +387,4 @@ if __name__ == "__main__":
     # test.testCountStartWords()
     # test.testBuildUniformProbs()
     # test.testBuildUnigramProbs()
-    test.testGetTopWords()
+    test.testBuildBigramProbs()
