@@ -210,7 +210,6 @@ def generateTextFromUnigrams(count, words, probs):
         temp = choices(words, weights=probs)
         # print(temp)
         str_+=temp[0]+" "
-
     return str_
 # words = [ "hello", "world", "again" ]
 # probs = [ 2/5, 2/5, 1/5 ]
