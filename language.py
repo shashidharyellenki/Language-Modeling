@@ -376,10 +376,12 @@ def scatterPlot(xs, ys, labels, title):
     plt.xlim(0, 0.02)
     plt.ylim(0, 0.02)
 
+
     # a bit of advanced code to draw a y=x line
     ax.plot([0, 1], [0, 1], color='black', transform=ax.transAxes)
 
     plt.show()
+# scatterPlot([1,2,3],[10,15,16] ,["A","B","V",],"testing scatterplot")
 
 
 ### RUN CODE ###
