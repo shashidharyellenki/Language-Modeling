@@ -4,6 +4,7 @@ Name:
 Roll No:
 """
 
+from os import read
 import language_tests as test
 
 project = "Language" # don't edit this
@@ -17,9 +18,15 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
+   result=[]
+   open_ = open(filename).read().splitlines()    
+   for word in open_:
+       if len(word)!=0:
+        result.append(word.split(' '))
+   return result
+    
 
-
+# print(loadBook("./data/test2.txt"))
 '''
 getCorpusLength(corpus)
 #2 [Check6-1]
@@ -27,7 +34,8 @@ Parameters: 2D list of strs
 Returns: int
 '''
 def getCorpusLength(corpus):
-    return
+  
+    return 
 
 
 '''
@@ -37,7 +45,8 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+
+    return 
 
 
 '''
@@ -285,21 +294,24 @@ def scatterPlot(xs, ys, labels, title):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek1()
 
     ## Uncomment these for Week 2 ##
-"""
-    print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek2()
-"""
+
+    # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
+    # test.week2Tests()
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek2()
+
 
     ## Uncomment these for Week 3 ##
-"""
-    print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
-    test.runWeek3()
-"""
+
+    # print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
+    # test.runWeek3()
+
+    test.testLoadBook()   
+    # test.testGetCorpusLength()
+    # test.testBuildVocabulary()
