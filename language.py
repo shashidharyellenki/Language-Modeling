@@ -195,7 +195,7 @@ def getTopWords(count, words, probs, ignoreList):
     result_dict={}
     temp_dict={}
     for i in range(len(words)):
-        if i not in ignoreList:
+        if words[i] not in ignoreList:
             temp_dict[words[i]]=probs[i]
     sorted_hastags = dict( sorted(temp_dict.items(), key=operator.itemgetter(1),reverse=True))
     for k,y in sorted_hastags.items():
@@ -299,8 +299,12 @@ Parameters: 2D list of strs ; str
 Returns: None
 '''
 def graphTopNextWords(corpus, word):
-    next_word = buildUnigramProbs
-    return
+    uni_count = countUnigrams(corpus)
+    bigram_count = countBigrams(corpus) #dict
+    words = buildUnigramProbs([i for i in bigram_count[word]],bigram_count[word],sum(bigram_count[word].values()))#3rd
+    # next_word = buildBigramProbs(uni_count, bigram_count)
+    top_10 = getTopWords(10,[i for i in bigram_count[word]], words, ignore)
+    return barPlot(top_10, "topNextWords")
 
 
 '''
@@ -310,7 +314,33 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    return
+    corpus_1_voc, corpus_2_voc= buildVocabulary(corpus1), buildVocabulary(corpus2)
+    corpus_1_count, corpus_2_count = countUnigrams(corpus1),countUnigrams(corpus2)
+    corpus_1_length, corpus_2_length = getCorpusLength(corpus1),getCorpusLength(corpus2)
+    probs_1_corpus, probs_2_corpus = buildUnigramProbs(corpus_1_voc,corpus_1_count, corpus_1_length ),buildUnigramProbs(corpus_2_voc,corpus_2_count, corpus_2_length ) #probs untayi shashidhar
+    top_n_corpus1,top_n_corpus2 = getTopWords(topWordCount,corpus_1_voc,probs_1_corpus,ignore),getTopWords(topWordCount,corpus_2_voc,probs_2_corpus,ignore)
+    list_=[]
+    for k,y in top_n_corpus1.items():
+        list_.append(k)
+    for a,z in top_n_corpus2.items():
+        if a not in list_:
+            list_.append(a)
+    prob1_list=[]
+    prob2_list=[]
+    for key in range(len(list_)):
+        if list_[key] in corpus_1_voc:
+            index_ = corpus_1_voc.index(list_[key])
+            prob1_list.append(probs_1_corpus[index_])
+        else:
+            prob1_list.append(0)
+        if list_[key] in corpus_2_voc:
+            index2 = corpus_2_voc.index(list_[key])
+            prob2_list.append(probs_2_corpus[index2])
+    result_dict={}
+    result_dict["topWords"] = list_
+    result_dict["corpus1Probs"]=prob1_list
+    result_dict["corpus2Probs"] = prob2_list
+    return result_dict
 
 
 '''
@@ -320,6 +350,8 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    data = setupChartData(corpus1, corpus2,numWords)
+    sideBySideBarPlots(data['topWords'], data['corpus1Probs'], data['corpus2Probs'], name1, name2, title)
     return
 
 
@@ -330,6 +362,8 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
+    data = setupChartData(corpus1,corpus2,numWords)
+    scatterPlot(data['corpus1Probs'], data['corpus2Probs'], data['topWords'],title)
     return
 
 
@@ -436,6 +470,6 @@ if __name__ == "__main__":
     # test.testCountStartWords()
     # test.testBuildUniformProbs()
     # test.testBuildUnigramProbs()
-    # test.testGetTopWords
+    # test.testGetTopWords()
     # test.testGenerateTextFromUnigrams()
     # test.testGenerateTextFromBigrams()
